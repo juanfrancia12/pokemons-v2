@@ -1,0 +1,4 @@
+next js
+typescript
+lint-staged: para pasar eslint y prettier antes de hacer commit
+tailwindcss
