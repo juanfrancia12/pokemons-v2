@@ -40,7 +40,7 @@ const MiniCard = ({
 
 const DetailsPokemon = ({ data }: pokemonInterface) => {
   return (
-    <section className="w-full min-h-screen bg-primary-800 py-8">
+    <section className="w-full bg-primary-800 py-8">
       <div className="container mx-auto 2xl:px-40">
         <article className="card bg-primary-600 flex flex-col items-center gap-4 md:grid md:grid-cols-2">
           <div className="w-72 md:w-auto md:flex md:flex-col md:justify-center md:items-center gap-10">
