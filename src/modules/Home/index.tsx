@@ -1,17 +1,18 @@
 import { List } from "@components/organisms/list"
 import { SearchBAr } from "@components/organisms/searchBar"
+import { useAllPokemons } from "@hooks/useAllPokemons"
 import { useState } from "react"
 
-interface Props {
-  dataPokemon: any
-}
-
-const HomePage = ({ dataPokemon }: Props) => {
+const HomePage = () => {
+  const { loading, pokemons } = useAllPokemons()
   const [txtSearch, setTxtSearch] = useState("")
+
   return (
-    <div className="flex flex-col gap-6">
-      <SearchBAr setTxtSearch={setTxtSearch} />
-      <List data={dataPokemon} txtSearch={txtSearch} />
+    <div className="w-full py-8 bg-primary-800">
+      <div className="container mx-auto 2xl:px-40 flex flex-col gap-6">
+        <SearchBAr setTxtSearch={setTxtSearch} />
+        <List loading={loading} data={pokemons} txtSearch={txtSearch} />
+      </div>
     </div>
   )
 }

@@ -11,44 +11,66 @@ interface Props {
     url: string
   }[]
   txtSearch: string
+  loading: boolean
 }
 
-export const List = ({ data, txtSearch }: Props) => {
+export const List = ({ loading, data, txtSearch }: Props) => {
+  const dataFilter = data.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(txtSearch.toLowerCase())
+  )
+
+  if (loading) {
+    return (
+      <NotFound
+        message="Cargando datos ..."
+        className="col-span-5 text-center text-primary-400 py-4"
+      />
+    )
+  }
+
+  if (!loading && dataFilter.length === 0) {
+    return (
+      <NotFound
+        message="No se encuentra resultados que coincida con su búsqueda"
+        className="col-span-5 text-center text-primary-400 py-4"
+      />
+    )
+  }
+
   return (
     <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
       {data
         .filter((pokemon) =>
           pokemon.name.toLowerCase().includes(txtSearch.toLowerCase())
         )
-        .map((pokemon) => {
-          const { name, url, image } = pokemon
+        .map(({ name, image }) => {
           return (
-            <article key={name} className="card hover:bg-primary-600">
-              <Link href={`/${name}`}>
-                <div className="w-full cursor-pointer transition-transform hover:scale-105">
-                  <div className="m-auto h-60 relative">
+            <Link key={name} href={`/${name}`}>
+              <article className="card hover:bg-primary-600 cursor-pointer transition-transform hover:scale-105 flex flex-col gap-4 p-4">
+                <div className="w-full">
+                  <div className="m-auto relative flex items-center justify-center">
                     <Image
                       src={image}
                       alt={name}
-                      layout="fill"
+                      // layout="fill"
+                      width={120}
+                      height={120}
                       placeholder="blur"
                       blurDataURL={image}
                       className="absolute"
                     />
                   </div>
                 </div>
-              </Link>
-              <div className="text-2xl text-center py-4 text-primary-400">
-                {name.toLocaleUpperCase()}
-              </div>
-              <button className="w-full py-3 bg-primary-900 text-primary-100 border-t-2 border-primary-300">
-                <Link href={`/${name}`}>Ver mas</Link>
-              </button>
-            </article>
+
+                <div className="text-xl text-center text-primary-400 font-bold">
+                  {name.toLocaleUpperCase()}
+                </div>
+              </article>
+            </Link>
           )
         })}
 
-      {data &&
+      {/* {data &&
         data.filter((pokemon) =>
           pokemon.name.toLowerCase().includes(txtSearch.toLowerCase())
         ).length === 0 && (
@@ -56,7 +78,7 @@ export const List = ({ data, txtSearch }: Props) => {
             message="No se encuentra tu búsqueda."
             className="col-span-5 text-center text-primary-400 py-4"
           />
-        )}
+        )} */}
     </div>
   )
 }

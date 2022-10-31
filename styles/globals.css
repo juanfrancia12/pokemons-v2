@@ -2,9 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    scroll-behavior: smooth;
+  }
+
+  img {
+    @apply block w-full h-full;
+  }
+}
+
 @layer components {
   .header {
-    @apply min-h-[5rem] py-2 bg-primary-900 text-primary-400 flex justify-between items-center;
+    @apply py-4 bg-primary-900 text-primary-400 flex justify-between items-center;
   }
   .max-screen {
     @apply max-w-[100rem] m-auto;

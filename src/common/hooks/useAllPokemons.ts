@@ -9,15 +9,18 @@ interface setStatePokemon {
 }
 
 export const useAllPokemons = () => {
-  const [pokemons, setPokemons] = useState<setStatePokemon | {}[] | any>([])
+  const [pokemons, setPokemons] = useState<setStatePokemon[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    setLoading(true)
     const fetch = async () => {
       const data = await FetchAll({ URL_POKEMON })
       setPokemons(data)
+      setLoading(false)
     }
     fetch()
   }, [])
 
-  return { pokemons }
+  return { loading, pokemons }
 }

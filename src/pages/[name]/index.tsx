@@ -40,81 +40,129 @@ const MiniCard = ({
 
 const DetailsPokemon = ({ data }: pokemonInterface) => {
   return (
-    <article className="card bg-primary-600 min-h-[34.6rem] flex flex-col items-center gap-4 md:grid md:grid-cols-2">
-      <div className="w-72 md:w-auto md:flex md:flex-col md:justify-center md:items-center gap-10">
-        <div className={"w-72 cursor-pointer relative"}>
-          <span
-            className={
-              "absolute md:-top-20 md:-left-24 pointer-events-none text-8xl -rotate-0"
-            }
-          >{`#${data.id}`}</span>
-          <div className="m-auto h-60 relative">
-            <Image
-              src={data.sprites.other["official-artwork"].front_default}
-              alt={data.name}
-              layout="fill"
-              placeholder="blur"
-              blurDataURL={data.sprites.other["official-artwork"].front_default}
-              className="absolute"
-            />
+    <section className="w-full min-h-screen bg-primary-800 py-8">
+      <div className="container mx-auto 2xl:px-40">
+        <article className="card bg-primary-600 flex flex-col items-center gap-4 md:grid md:grid-cols-2">
+          <div className="w-72 md:w-auto md:flex md:flex-col md:justify-center md:items-center gap-10">
+            <div className={"w-72 cursor-pointer relative"}>
+              <span
+                className={
+                  "absolute md:-top-20 md:-left-24 pointer-events-none text-8xl -rotate-0 text-primary-400/20"
+                }
+              >{`#${data.id}`}</span>
+              <div className="m-auto h-60 relative">
+                <Image
+                  src={data.sprites.other["official-artwork"].front_default}
+                  alt={data.name}
+                  layout="fill"
+                  placeholder="blur"
+                  blurDataURL={
+                    data.sprites.other["official-artwork"].front_default
+                  }
+                  className="absolute cursor-default"
+                />
+              </div>
+            </div>
+            <h1 className="text-5xl font-bold text-primary-400">
+              {data.name.toUpperCase()}
+            </h1>
           </div>
-        </div>
-        <h1 className="text-5xl font-bold text-primary-400">
-          {data.name.toUpperCase()}
-        </h1>
+          <div className="grid grid-cols-2 content-start gap-4 p-4">
+            <MiniCard
+              data={`${data.weight} kilograms`}
+              classContainer="w-full h-max p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md"
+              classTitle="text-2xl"
+              classContent="text-lg"
+              title={"Weigth"}
+            />
+            <MiniCard
+              data={`${data.height} centimeters`}
+              classContainer="w-full h-max p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md"
+              classTitle="text-2xl"
+              classContent="text-lg"
+              title={"Heigth"}
+            />
+            <MiniCard
+              data={`${data.base_experience}`}
+              classContainer="w-full h-max p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md"
+              classTitle="text-2xl"
+              classContent="text-lg"
+              title={"Base experience"}
+            />
+            <MiniCard
+              data={`${iterate(data.types, "type")}`}
+              classContainer="w-full h-max p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md"
+              classTitle="text-2xl"
+              classContent="text-lg"
+              title={"Types"}
+            />
+            <div
+              className={
+                "w-full h-full p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md"
+              }
+            >
+              <span className={"text-2xl"}>Stats</span>
+              <div
+                className={
+                  "text-md flex justify-center items-center flex-wrap gap-4"
+                }
+              >
+                {data?.stats.slice(0, 2).map((item, index) => (
+                  <span
+                    key={index}
+                    className="py-2 px-4 capitalize rounded-md bg-primary-600"
+                  >
+                    {item.stat.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div
+              className={
+                "w-full h-full p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md"
+              }
+            >
+              <span className={"text-2xl"}>Abilities</span>
+              <div
+                className={
+                  "text-md flex justify-center items-center flex-wrap gap-4"
+                }
+              >
+                {data?.abilities.slice(0, 2).map((item, index) => (
+                  <span
+                    key={index}
+                    className="py-2 px-4 capitalize rounded-md bg-primary-600"
+                  >
+                    {item.ability.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div
+              className={
+                "w-full h-max p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md col-span-2"
+              }
+            >
+              <span className={"text-2xl"}>Moves</span>
+              <div
+                className={
+                  "text-md flex justify-center items-center flex-wrap gap-4"
+                }
+              >
+                {data?.moves.slice(0, 5).map((item, index) => (
+                  <span
+                    key={index}
+                    className="py-2 px-4 capitalize rounded-md bg-primary-600"
+                  >
+                    {item.move.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
-      <div className="grid grid-cols-2 content-start gap-4 p-4">
-        <MiniCard
-          data={`${data.weight} kilograms`}
-          classContainer="w-full h-max p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md"
-          classTitle="text-2xl"
-          classContent="text-lg"
-          title={"Weigth"}
-        />
-        <MiniCard
-          data={`${data.height} centimeters`}
-          classContainer="w-full h-max p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md"
-          classTitle="text-2xl"
-          classContent="text-lg"
-          title={"Heigth"}
-        />
-        <MiniCard
-          data={`${data.base_experience}`}
-          classContainer="w-full h-max p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md"
-          classTitle="text-2xl"
-          classContent="text-lg"
-          title={"Base experience"}
-        />
-        <MiniCard
-          data={`${iterate(data.types, "type")}`}
-          classContainer="w-full h-max p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md"
-          classTitle="text-2xl"
-          classContent="text-lg"
-          title={"Types"}
-        />
-        <MiniCard
-          data={`${iterate(data.stats, "stat")}`}
-          classContainer="w-full h-max p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md"
-          classTitle="text-2xl"
-          classContent="text-lg"
-          title={"Stats"}
-        />{" "}
-        <MiniCard
-          data={`${iterate(data.abilities, "ability")}`}
-          classContainer="w-full h-max p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md"
-          classTitle="text-2xl"
-          classContent="text-lg"
-          title={"Abilities"}
-        />
-        <MiniCard
-          data={`${iterate(data.moves, "move").slice(0, 5)}`}
-          classContainer="w-full h-max p-4 bg-primary-700 text-primary-400 flex flex-col gap-4 rounded-md col-span-2"
-          classTitle="text-2xl"
-          classContent="text-lg"
-          title={"Moves"}
-        />
-      </div>
-    </article>
+    </section>
   )
 }
 
