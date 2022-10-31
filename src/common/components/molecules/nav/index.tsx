@@ -23,14 +23,16 @@ const Nav = ({ className, onClick }: Props) => {
     //     )
     //   })}
     // </ul>
-    isPathDetails && (
-      <button
-        onClick={() => Router.back()}
-        className="bg-red-100/70 text-red-800 px-4 py-2 rounded-md"
-      >
-        Regresar
-      </button>
-    )
+    <>
+      {isPathDetails && (
+        <button
+          onClick={() => Router.back()}
+          className="bg-red-100/70 text-red-800 px-4 py-2 rounded-md"
+        >
+          Regresar
+        </button>
+      )}
+    </>
   )
 }
 
