@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .header {
+    @apply min-h-[5rem] py-2 bg-primary-900 text-primary-400 flex justify-between items-center;
+  }
+  .max-screen {
+    @apply max-w-[100rem] m-auto;
+  }
+  .footer {
+    @apply text-center py-5 bg-primary-900 text-primary-400;
+  }
+  .card {
+    @apply bg-primary-700 text-primary-100 rounded-lg overflow-hidden shadow-xl shadow-primary-200;
+  }
+  .grid {
+  }
+  .padding-seccion {
+    @apply px-4 md:px-10 lg:px-20;
+  }
+}

@@ -1,7 +1,19 @@
-type Props = {}
+import { List } from "@components/organisms/list"
+import { SearchBAr } from "@components/organisms/searchBar"
+import { useState } from "react"
 
-const Home = (props: Props) => {
-  return <div>Pagina principal</div>
+interface Props {
+  dataPokemon: any
 }
 
-export default Home
+const HomePage = ({ dataPokemon }: Props) => {
+  const [txtSearch, setTxtSearch] = useState("")
+  return (
+    <div className="flex flex-col gap-6">
+      <SearchBAr setTxtSearch={setTxtSearch} />
+      <List data={dataPokemon} txtSearch={txtSearch} />
+    </div>
+  )
+}
+
+export default HomePage

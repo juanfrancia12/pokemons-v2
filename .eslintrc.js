@@ -24,4 +24,9 @@ module.exports = {
     "react/prop-types": RULES.OFF,
     "react/react-in-jsx-scope": RULES.OFF,
   },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
 }
