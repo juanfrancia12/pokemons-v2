@@ -1,9 +1,9 @@
 import { Header } from "@organisms/header/index"
 
 interface Props {
-  children: JSX.Element | JSX.Element[]
+  children: any
 }
-
+// JSX.Element | JSX.Element[]
 const Layout = ({ children }: Props) => {
   return (
     <div className="min-h-screen flex flex-col">

@@ -1,20 +1,20 @@
-interface RouteParam {
+export interface RouteParam {
   pokemonName: string
 }
 
-interface Ability {
+export interface Ability {
   ability: {
     name: string
   }
 }
 
-interface Move {
+export interface Move {
   move: {
     name: string
   }
 }
 
-interface Stat {
+export interface Stat {
   base_stat: number
   effort: number
   stat: {
@@ -22,7 +22,7 @@ interface Stat {
   }
 }
 
-interface Type {
+export interface Type {
   type: {
     name: string
   }

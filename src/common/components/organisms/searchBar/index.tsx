@@ -1,5 +1,4 @@
 import { Search } from "@components/molecules/search"
-import Select from "@components/molecules/select"
 
 // const OPTIONS_CATEGORIAS = []
 

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
-import { URL_POKEMON, URL_UNIQUE_POKEMON } from "@constants/url"
+import { URL_POKEMON } from "@constants/url"
 import { FetchAll } from "@helpers/Fetch"
+import { useEffect, useState } from "react"
 
 interface setStatePokemon {
   name: string

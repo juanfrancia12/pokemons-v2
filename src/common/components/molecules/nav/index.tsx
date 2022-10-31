@@ -1,5 +1,3 @@
-import { NAV_ITEMS } from "@constants/nav"
-import Link from "next/link"
 import Router, { useRouter } from "next/router"
 
 type Props = {
