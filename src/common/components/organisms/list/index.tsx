@@ -22,8 +22,8 @@ export const List = ({ loading, data, txtSearch }: Props) => {
   if (loading) {
     return (
       <NotFound
-        message="Cargando datos ..."
-        className="col-span-5 text-center text-primary-400 py-4"
+        message="Cargando pokemones ..."
+        className="col-span-5 text-center text-primary-900/80 dark:text-primary-400 py-4"
       />
     )
   }
@@ -32,7 +32,7 @@ export const List = ({ loading, data, txtSearch }: Props) => {
     return (
       <NotFound
         message="No se encuentra resultados que coincida con su búsqueda"
-        className="col-span-5 text-center text-primary-400 py-4"
+        className="col-span-5 text-center text-primary-900/80 dark:text-primary-400 py-4"
       />
     )
   }
@@ -46,13 +46,12 @@ export const List = ({ loading, data, txtSearch }: Props) => {
         .map(({ name, image }) => {
           return (
             <Link key={name} href={`/${name}`}>
-              <article className="card hover:bg-primary-600 cursor-pointer transition-transform hover:scale-105 flex flex-col gap-4 p-4">
+              <article className="card cursor-pointer transition-transform hover:scale-105 flex flex-col gap-4 p-4">
                 <div className="w-full">
                   <div className="m-auto relative flex items-center justify-center">
                     <Image
                       src={image}
                       alt={name}
-                      // layout="fill"
                       width={120}
                       height={120}
                       placeholder="blur"
@@ -62,23 +61,13 @@ export const List = ({ loading, data, txtSearch }: Props) => {
                   </div>
                 </div>
 
-                <div className="text-xl text-center text-primary-400 font-bold">
+                <div className="text-xl text-center font-bold">
                   {name.toLocaleUpperCase()}
                 </div>
               </article>
             </Link>
           )
         })}
-
-      {/* {data &&
-        data.filter((pokemon) =>
-          pokemon.name.toLowerCase().includes(txtSearch.toLowerCase())
-        ).length === 0 && (
-          <NotFound
-            message="No se encuentra tu búsqueda."
-            className="col-span-5 text-center text-primary-400 py-4"
-          />
-        )} */}
     </div>
   )
 }
